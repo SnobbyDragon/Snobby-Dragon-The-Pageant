@@ -1,6 +1,5 @@
 package minigames;
 import java.awt.Graphics;
-import java.awt.Image;
 
 public abstract class Thing {
 	private int xPosition, yPosition; //position
@@ -16,13 +15,13 @@ public abstract class Thing {
 		return xPosition;
 	}
 	
+	public int getYPos() {
+		return yPosition;
+	}
+	
 	public void moveX(int x) {
 		// moves the x-position to x
 		xPosition = x;
-	}
-	
-	public int getYPos() {
-		return yPosition;
 	}
 	
 	public void moveY(int y) {

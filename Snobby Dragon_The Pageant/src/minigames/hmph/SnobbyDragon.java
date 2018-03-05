@@ -1,3 +1,4 @@
+
 package minigames.hmph;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,49 +11,45 @@ import minigames.Thing;
 
 public class SnobbyDragon extends Thing {
 
-	private GifDecoder hmph = new GifDecoder(), idle = new GifDecoder(), walking = new GifDecoder();
-	int isHmph, isIdle, isWalking; //counts frames
-	boolean isMoving;
+	private static GifDecoder hmph = new GifDecoder("Snobby Hmph.gif"), idle = new GifDecoder("Snobby Idle.gif"), walking = new GifDecoder("Snobby Walk.gif");
+	private int isHmph, isIdle, isWalking; //counts frames
+	private final static int HMPH_RATE = 4, HMPH_FRAME = hmph.getFrameCount(), IDLE_RATE = 5, WALKING_RATE = 2;
+	private boolean isMoving;
 
 	public SnobbyDragon(int x, int y) {
 		super(x, y);	
 		
 		isHmph = -1; //frame number of hmph animation, -1 means not hmphing
-		isIdle = -1; //frame number of idle animation, -1 means not idle
-		isWalking = 0; //frame number of walking animation, -1 means not moving
-		
+		isIdle = 0; //frame number of idle animation, -1 means not idle
+		isWalking = -1; //frame number of walking animation, -1 means not moving
 		isMoving = false; //whether moving across screen or not
-		
-		hmph.read("Snobby Hmph.gif");
-		idle.read("Snobby Idle.gif");
-		walking.read("Snobby Walk.gif");
 	}
 	
 	@Override
 	public void draw(Graphics window) {
 		if (isHmph != -1) { //hmphs
-			int n = isHmph/3%hmph.getFrameCount(); //temporary frame number
+			int n = isHmph/HMPH_RATE%HMPH_FRAME; //temporary frame number
 			window.drawImage(hmph.getFrame(n), getXPos(), getYPos(), null);
 			isHmph++;
-			if (isHmph == 3*hmph.getFrameCount()) {
-				setHmph(-1);
+			if (isHmph == HMPH_RATE*HMPH_FRAME) {
+				isHmph = -1;
 			}
 		}
 		else if (isIdle != -1) { //idle animation
-			int n = isIdle/3%idle.getFrameCount();
+			int n = isIdle/IDLE_RATE%idle.getFrameCount();
 			window.drawImage(idle.getFrame(n), getXPos(), getYPos(), null);
-			if (isIdle == 3*idle.getFrameCount()) {
-				setIdle(0);
+			if (isIdle == IDLE_RATE*idle.getFrameCount()) {
+				isIdle = 0;
 			}
 			else {
 				isIdle++;
 			}
 		}
 		else if (isWalking != -1) {
-			int n = isWalking/2%walking.getFrameCount();
+			int n = isWalking/WALKING_RATE%walking.getFrameCount();
 			window.drawImage(walking.getFrame(n), getXPos(), getYPos(), null);
-			if (isWalking == 2*walking.getFrameCount()) {
-				setWalking(0);
+			if (isWalking == WALKING_RATE*walking.getFrameCount()) {
+				isWalking = 0;
 			}
 			else {
 				isWalking++;
@@ -93,6 +90,22 @@ public class SnobbyDragon extends Thing {
 	
 	public boolean getMoving() {
 		return isMoving;
+	}
+	
+	public static int getIdleRate() {
+		return IDLE_RATE;
+	}
+	
+	public static int getWalkingRate() {
+		return WALKING_RATE;
+	}
+	
+	public static int getHmphRate() {
+		return HMPH_RATE;
+	}
+	
+	public static int getHmphFrame() {
+		return HMPH_FRAME;
 	}
 
 }

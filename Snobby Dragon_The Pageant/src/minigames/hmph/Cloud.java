@@ -7,7 +7,7 @@ import minigames.Thing;
 
 public class Cloud extends Thing {
 	
-	private GifDecoder clouds = new GifDecoder();
+	private static GifDecoder clouds = new GifDecoder("Clouds.gif");
 	private int speed, isSlow, whichCloud; //type of cloud
 
 	public Cloud(int x, int y) {
@@ -16,8 +16,6 @@ public class Cloud extends Thing {
 		
 		speed = (int) (Math.random()*3 + 3);
 		isSlow = -1; //not slow moving
-		
-		clouds.read("Clouds.gif");
 		whichCloud = (int) (Math.random()*(clouds.getFrameCount() - 1));
 	}
 
@@ -28,8 +26,8 @@ public class Cloud extends Thing {
 		if (isSlow != -1) {
 			moveX(getXPos() - speed + 2);
 			isSlow++;
-			if (isSlow == 24) { //3*8 = 24, which is the hmph animation time
-				setSlow(-1);
+			if (isSlow == SnobbyDragon.getHmphRate()*SnobbyDragon.getHmphFrame()) { //3*8 = 24, which is the hmph animation time (rate*frames)
+				isSlow = -1;
 			}
 		}
 		else {
@@ -44,17 +42,19 @@ public class Cloud extends Thing {
 		}
 		else {
 			whichCloud = clouds.getFrameCount() - (int) (Math.random()*4) - 1;
-			if (whichCloud == 15) {
+			switch (whichCloud) {
+			case 15:
 				System.out.println("whale cloud!");
-			}
-			else if (whichCloud == 16) {
+				break;
+			case 16:
 				System.out.println("umbrella cloud!");
-			}
-			else if (whichCloud == 17) {
+				break;
+			case 17:
 				System.out.println("monocle cloud!");
-			}
-			else if (whichCloud == 18) {
+				break;
+			case 18:
 				System.out.println("hat cloud!");
+				break;
 			}
 		}
 	}

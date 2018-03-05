@@ -5,10 +5,12 @@ import minigames.MiniGame;
 
 public class Insults extends MiniGame {
 	
+	private static final String HELP = "";
 	private int errors;
 	
 	public Insults() {
 		super();
+		setHelpBox(HELP);
 	}
 
 	@Override

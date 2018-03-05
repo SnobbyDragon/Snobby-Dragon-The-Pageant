@@ -7,7 +7,7 @@ import minigames.Thing;
 
 public class HmphBackground extends Thing {
 	
-	private GifDecoder background = new GifDecoder();
+	private static GifDecoder background = new GifDecoder("Hmph Background.gif");
 	private int frame, isStop;
 
 	public HmphBackground() {
@@ -15,7 +15,6 @@ public class HmphBackground extends Thing {
 		// TODO Auto-generated constructor stub
 		frame = 0;
 		isStop = -1; //background is moving b/c dragon is walking
-		background.read("Hmph Background.gif");
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class HmphBackground extends Thing {
 		}
 		else {
 			isStop++;
-			if (isStop == 24) { //3*8 = 24, which is the hmph animation time
+			if (isStop == SnobbyDragon.getHmphRate()*SnobbyDragon.getHmphFrame()) { //3*8 = 24, which is the hmph animation time (rate*frames)
 				setStop(-1);
 			}
 		}

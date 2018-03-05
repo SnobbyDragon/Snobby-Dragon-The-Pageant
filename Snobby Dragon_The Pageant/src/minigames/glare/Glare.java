@@ -1,14 +1,17 @@
 package minigames.glare;
 import java.awt.Graphics;
 
+
 import minigames.MiniGame;
 
 public class Glare extends MiniGame {
 	
+	private static final String HELP = "";
 	private int hits, misses;
 	
 	public Glare() {
 		super();
+		setHelpBox(HELP);
 	}
 
 	@Override
@@ -18,12 +21,6 @@ public class Glare extends MiniGame {
 		setScore(number);
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void draw(Graphics window) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

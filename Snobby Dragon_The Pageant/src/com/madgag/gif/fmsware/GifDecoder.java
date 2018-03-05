@@ -94,6 +94,14 @@ public class GifDecoder {
 
 	protected ArrayList frames; // frames read from current file
 	protected int frameCount;
+	
+	public GifDecoder() {
+		
+	}
+	
+	public GifDecoder(String gif) {
+		this.read(gif);
+	}
 
 	static class GifFrame {
 		public GifFrame(BufferedImage im, int del) {
