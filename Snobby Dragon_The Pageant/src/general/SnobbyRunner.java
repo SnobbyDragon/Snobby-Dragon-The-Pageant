@@ -1,7 +1,11 @@
 package general;
 
+import java.awt.SplashScreen;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 import minigames.HelpBox;
 
@@ -14,17 +18,22 @@ public class SnobbyRunner extends JFrame{
 	private static int scene;
 	/* Scenes:
 	 * -1 = splash screen (LoadingPanel)
-	 * 0 = home screen (HomePanel)
+	 * 0 = home screen (HomePanel) 
 	 * 1 = minigames (SnobbyPanel)
 	 * 2 = final score screen (ScorePanel)
 	 */
+	//TODO: MAKE A GLASS ROOT PANE TO CATCH ACTIONS AND PAINT TRANSITIONS
 	
 	private static JLayeredPane layers;
 	private static HomePanel home;
 	private static SnobbyPanel minigames;
 	private static ScorePanel score;
 	private static HelpBox help1, help2, help3;
-
+	private static MiniTransition transition;
+	private static boolean veryBeginning;
+	private static SplashScreen loading;
+	
+	
 	public SnobbyRunner() {
 		super("Snobby Dragon: The Pageant");
 		setVisible(true);
@@ -53,11 +62,19 @@ public class SnobbyRunner extends JFrame{
 		//adds score graphics
 		score = new ScorePanel();
 		layers.add(score);
+		
+		//transitions
+		transition = new MiniTransition();
+		layers.add(transition);
+		layers.moveToFront(transition);
+		
+		veryBeginning = true;
 	}
 
 	public static void main(String[] args) {
 		SnobbyRunner game = new SnobbyRunner();
 		changeScene(); //goes to home screen in the beginning
+		veryBeginning = false;
 	}
 	
 	public static void setHelpBox() {
@@ -75,7 +92,14 @@ public class SnobbyRunner extends JFrame{
 		layers.moveToBack(minigames);
 	}
 	
-	//TODO: Integrate scenes together better
+	private static void splashInit() { //TODO: SPLASH SCREEN
+		
+	}
+	
+	private static void splashLoading() {
+		
+	}
+	
 	public static int getScene() {
 		return scene;
 	}
@@ -86,6 +110,9 @@ public class SnobbyRunner extends JFrame{
 	}
 	
 	public static void changeScene() {
+		if (!veryBeginning) {
+			transition();
+		}
 		if (scene == 0) { //home
 			home.setVisible(true);
 			minigames.setVisible(false);
@@ -103,5 +130,9 @@ public class SnobbyRunner extends JFrame{
 			minigames.setVisible(false);
 			score.setVisible(true);
 		}
+	}
+	
+	public static void transition() {
+		transition.go();
 	}
 }
