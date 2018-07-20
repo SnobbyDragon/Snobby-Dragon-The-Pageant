@@ -16,7 +16,7 @@ public class SnobbyBorb extends PhysicsThing {
 	private int isIdle;
 	private static final int IDLE_RATE = 8, IDLE_FRAME = idle.getFrameCount();
 	private BodyFixture circle;
-	private static final int RADIUS = idle.getFrameSize().width/2;
+	private static final int RADIUS = (int) (idle.getFrameSize().width/2*0.8);
 	
 	public SnobbyBorb(int x, int y) {
 		super(x, y);
@@ -34,6 +34,7 @@ public class SnobbyBorb extends PhysicsThing {
 	public void draw(Graphics2D window) {
 		AffineTransform transform = new AffineTransform();
 		transform.translate(getXPos() - RADIUS, getYPos() - RADIUS); //accounts for top left corner vs center
+		transform.scale(0.8, 0.8);
 		int n = isIdle/IDLE_RATE%IDLE_FRAME;
 		window.drawImage(idle.getFrame(n), transform, null);
 		isIdle++;

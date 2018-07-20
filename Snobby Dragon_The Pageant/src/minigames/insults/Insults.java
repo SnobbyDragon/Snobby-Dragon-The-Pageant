@@ -19,7 +19,7 @@ public class Insults extends MiniGame {
 	private static final double UPDATE_TIME = (double)SnobbyPanel.TIME_PER_FRAME/1000;
 	
 	private static final String HELP = "Use the arrow keys to aim the cannon and press enter to shoot snobby borbs!"; //TODO: instructions on how to play
-	private static final String[] INSULTS = {"PEASANT", "UNCULTURED SWINE", "FOPDOODLE", "DONUT", "DONKEY", "IDIOT", "DUNCE", "CRETIN"}; //word bank
+	private static final String[] INSULTS = {"PEASANT", "UNCULTURED SWINE", "FOPDOODLE", "DONUT", "DONKEY", "IDIOT", "DUNCE", "CRETIN", "STALE BAGEL", "DUMMY"}; //word bank
 	private String currentInsult;
 	private char currentLetter;
 	private int currentSpot;
@@ -30,7 +30,7 @@ public class Insults extends MiniGame {
 	private Ground ground;
 	private Sky sky;
 	private Cannon cannon;
-	private static final int cannonPower = 7500;
+	private static final int cannonPower = 4000;
 	private static final double cannonAngleAdjustment = 0.05;
 	private ArrayList<LetterBox> letterBoxes;
 	private static final int boxX = 18, boxY = 16; //first box will always be here
@@ -42,7 +42,7 @@ public class Insults extends MiniGame {
 		
 		borbs = new ArrayList<SnobbyBorb>();
 		walls = new ArrayList<Wall>();
-		walls.add(new StoneWall(400, 200));
+		makeBuilding();
 		ground = new Ground(SnobbyRunner.WIDTH/2, SnobbyRunner.HEIGHT - Ground.HEIGHT/2);
 		sky = new Sky(0, 0);
 		
@@ -92,6 +92,10 @@ public class Insults extends MiniGame {
 	public void drawBackground(Graphics2D window) {
 		// TODO Auto-generated method stub
 		sky.draw(window);
+	}
+	
+	public void makeBuilding() {
+		walls.add(new StoneWall(400, 200));
 	}
 	
 	public void randomInsult() {
