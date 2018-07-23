@@ -8,6 +8,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import minigames.HelpBox;
+import minigames.Pause;
 
 public class SnobbyRunner extends JFrame{
 	
@@ -29,6 +30,7 @@ public class SnobbyRunner extends JFrame{
 	private static SnobbyPanel minigames;
 	private static ScorePanel score;
 	private static HelpBox help1, help2, help3;
+	private static Pause pause;
 	private static MiniTransition transition;
 	private static boolean veryBeginning;
 	private static SplashScreen loading;
@@ -58,6 +60,13 @@ public class SnobbyRunner extends JFrame{
 		
 		//adds help boxes
 		setHelpBox();
+		
+		//pause button
+		pause = new Pause();
+		layers.add(pause);
+		
+		//makes help boxes and pause button in front
+		layers.moveToBack(minigames);
 		
 		//adds score graphics
 		score = new ScorePanel();
@@ -89,7 +98,6 @@ public class SnobbyRunner extends JFrame{
 		layers.add(help1);
 		layers.add(help2);
 		layers.add(help3);
-		layers.moveToBack(minigames);
 	}
 	
 	private static void splashInit() { //TODO: SPLASH SCREEN
@@ -115,17 +123,20 @@ public class SnobbyRunner extends JFrame{
 		}
 		if (scene == 0) { //home
 			home.setVisible(true);
+			pause.setVisible(false);
 			minigames.setVisible(false);
 			score.setVisible(false);
 		}
 		else if (scene == 1) { //games
 			home.setVisible(false);
+			pause.setVisible(true);
 			minigames.setVisible(true);
 			score.setVisible(false);
 		}
 		else if (scene == 2) { //score
 			minigames.reset(); //sets up in case player wants to play again
 			setHelpBox();
+			pause.setVisible(false);
 			home.setVisible(false);
 			minigames.setVisible(false);
 			score.setVisible(true);
