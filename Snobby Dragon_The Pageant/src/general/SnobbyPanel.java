@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
 import minigames.MiniGame;
@@ -132,7 +130,7 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 			//System.out.println("Game 3!");
 			game3.draw(window);
 			if (game3.getPlaying()) {
-				System.out.println("game 3 playing");
+				//System.out.println("game 3 playing");
 				game3.setTime(game3.getTime() + TIME_PER_FRAME);
 				if (game3.getTime() >= MINIGAME_TIME) {
 					game3.setPlaying(false);
@@ -227,6 +225,7 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 				game3.setPlaying(true);
 				requestFocus(); //gets focus from help so can use keyboard
 			}
+			game3.glare();
 		}
 	}
 
@@ -270,6 +269,10 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if (game3.getActive()) {
+			game3.getMonocle().setX(e.getX());
+			game3.getMonocle().setY(e.getY());
+		}
 	}
 
 }
