@@ -1,6 +1,5 @@
 package minigames.glare;
-import java.awt.Graphics;
-
+import java.awt.Graphics2D;
 
 import minigames.MiniGame;
 
@@ -8,10 +7,15 @@ public class Glare extends MiniGame {
 	
 	private static final String HELP = "";
 	private int hits, misses;
+	private Monocle monocle;
 	
 	public Glare() {
 		super();
 		setHelpBox(HELP);
+		
+		hits = 0;
+		misses = 0;
+		monocle = new Monocle(0, 0);
 	}
 
 	@Override
@@ -24,15 +28,19 @@ public class Glare extends MiniGame {
 	}
 
 	@Override
-	public void drawForeground(Graphics window) {
+	public void drawForeground(Graphics2D window) {
+		// TODO Auto-generated method stub
+		monocle.draw(window);
+	}
+	
+	@Override
+	public void drawBackground(Graphics2D window) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	@Override
-	public void drawBackground(Graphics window) {
-		// TODO Auto-generated method stub
-		
+	public Monocle getMonocle() {
+		return monocle;
 	}
 
 }
