@@ -39,6 +39,10 @@ public class Glare extends MiniGame {
 		
 	}
 	
+	public void glare() { //glares at the current position
+		monocle.shoot();
+	}
+	
 	public Monocle getMonocle() {
 		return monocle;
 	}
