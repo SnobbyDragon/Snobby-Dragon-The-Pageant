@@ -21,6 +21,7 @@ import minigames.insults.Insults;
 
 public class SnobbyPanel extends JPanel implements Runnable, MouseListener, MouseMotionListener {
 
+	public static boolean isRunning;
 	public static final int FPS = 40;
 	public static final long TIME_PER_FRAME = 1000/FPS; //in milliseconds
 	public static final long MINIGAME_TIME = 1000*30; //in milliseconds. 30 seconds per minigame
@@ -31,7 +32,7 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 		@Override
 		public void keyPressed(KeyEvent e) {
 			//System.out.println(e.getKeyChar());
-			if (game2.getPlaying()) { //if insults game
+			if (game2.getPlaying()&&isRunning) { //if insults game and not paused
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_UP:
 					game2.adjustCannon(true);
@@ -71,6 +72,8 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 		setIgnoreRepaint(true);
 		setDoubleBuffered(true);
 		new Thread(this).start();
+		
+		isRunning = true; //not paused
 
 		//interactive components
 		addMouseListener(this);
@@ -92,7 +95,7 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 			if (game1.getPlaying()) {
 				game1.setTime(game1.getTime() + TIME_PER_FRAME);
 				//System.out.println("Time:" + game1.getTime());
-				if (game1.getTime() >= MINIGAME_TIME) { //1 minute per minigame TODO: DELETE COMMENT LATER WHEN DONE
+				if (game1.getTime() >= 1) {//MINIGAME_TIME) { //1 minute per minigame TODO: DELETE COMMENT LATER WHEN DONE
 					game1.getDragon().setMoving(true); //snobby walks out of screen when time is over
 					if (game1.getDragon().getXPos() >= SnobbyRunner.WIDTH) { //when snobby is off screen, transition scenes and stop player interactions
 						game1.setPlaying(false);
@@ -113,7 +116,7 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 			if (game2.getPlaying()) {
 				//System.out.println("game 2 playing");
 				game2.setTime(game2.getTime() + TIME_PER_FRAME);
-				if (game2.getTime() >= MINIGAME_TIME) { //TODO: DELETE COMMENT LATER WHEN DONE
+				if (game2.getTime() >= 1) {//MINIGAME_TIME) { //TODO: DELETE COMMENT LATER WHEN DONE
 					game2.setPlaying(false);
 				}
 			}
@@ -192,7 +195,9 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 			while (true) {
 				Thread.currentThread();
 				Thread.sleep(TIME_PER_FRAME);
-				repaint();
+				if (isRunning) {
+					repaint();
+				}
 			}
 		}
 		catch (Exception e) {
