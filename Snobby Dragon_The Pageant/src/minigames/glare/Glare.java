@@ -1,6 +1,8 @@
 package minigames.glare;
+import java.awt.Color;
 import java.awt.Graphics2D;
 
+import general.SnobbyRunner;
 import minigames.MiniGame;
 
 public class Glare extends MiniGame {
@@ -36,7 +38,8 @@ public class Glare extends MiniGame {
 	@Override
 	public void drawBackground(Graphics2D window) {
 		// TODO Auto-generated method stub
-		
+		window.setColor(Color.BLACK);
+		window.fillRect(0, 0, SnobbyRunner.WIDTH, SnobbyRunner.HEIGHT);
 	}
 	
 	public void glare() { //glares at the current position
