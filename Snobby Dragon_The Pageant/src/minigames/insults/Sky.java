@@ -8,7 +8,7 @@ import minigames.Thing;
 
 public class Sky extends Thing {
 
-	private static GifDecoder sky = new GifDecoder("Insults Sky.gif");
+	private static GifDecoder sky = new GifDecoder("Insults Sky.gif"); //TODO maybe make animated later
 	
 	public Sky(int x, int y) {
 		super(x, y);

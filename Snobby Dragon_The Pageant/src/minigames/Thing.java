@@ -1,32 +1,36 @@
 package minigames;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 public abstract class Thing {
-	private int xPosition, yPosition; //position
+	private Point position;
 	
 	public Thing(int x ,int y) {
-		xPosition = x;
-		yPosition = y;
+		position = new Point(x, y);
 	}
 	
-	public abstract void draw(Graphics window);
+	public abstract void draw(Graphics2D window);
+	
+	public Point getPoint() {
+		return position;
+	}
 	
 	public int getXPos() {
-		return xPosition;
+		return position.x;
 	}
 	
 	public int getYPos() {
-		return yPosition;
+		return position.y;
 	}
 	
-	public void moveX(int x) {
+	public void setX(int x) {
 		// moves the x-position to x
-		xPosition = x;
+		position.setLocation(x, position.y);
 	}
 	
-	public void moveY(int y) {
+	public void setY(int y) {
 		// moves the y-position to y
-		yPosition = y;
+		position.setLocation(position.x, y);
 	}
 	
 }

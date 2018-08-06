@@ -16,7 +16,7 @@ public class HomePanel extends JPanel {
 	
 	private JButton play; //TODO: make a reset scores data
 	private JLabel background;
-	private ImageIcon homeBackground = new ImageIcon("Hmph Background.gif"); //animated background TODO: create a home page background
+	private ImageIcon homeBackground = new ImageIcon("Snobby Homepage.jpg");
 	
 	public HomePanel() {
 		setLayout(null);
@@ -44,6 +44,7 @@ public class HomePanel extends JPanel {
 		//background picture
 		background = new JLabel("");
 		background.setLabelFor(this);
+		homeBackground.setImage(homeBackground.getImage().getScaledInstance(SnobbyRunner.WIDTH, SnobbyRunner.HEIGHT, java.awt.Image.SCALE_SMOOTH)); //resizes the icon so it fits
 		background.setIcon(homeBackground);
 		background.setBounds(0, 0, SnobbyRunner.WIDTH, SnobbyRunner.HEIGHT);
 		add(background);

@@ -1,5 +1,5 @@
 package minigames.hmph;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.lang.Math;
 import java.util.ArrayList;
 
@@ -50,12 +50,12 @@ public class Hmph extends MiniGame {
 	}
 
 	@Override
-	public void drawForeground(Graphics window) {
+	public void drawForeground(Graphics2D window) {
 		// TODO Auto-generated method stub
 		for (Peasant p : peasants) {
 			if (p.getXPos() < -300 && Math.random() < 0.01) { //respawns if offscreen
 				if (getPlaying()) { //only spawns peasants when game is active
-					p.moveX(SnobbyRunner.WIDTH);
+					p.setX(SnobbyRunner.WIDTH);
 					p.setOffended(false);
 				}
 			}
@@ -68,7 +68,7 @@ public class Hmph extends MiniGame {
 	}
 	
 	@Override
-	public void drawBackground(Graphics window) {
+	public void drawBackground(Graphics2D window) {
 		// TODO Auto-generated method stub
 		if (!getPlaying()) { //background doesn't move when not playing
 			background.setStop(23); //frame 23 because at 24, will start moving again so only stops for 1 frame
@@ -76,8 +76,8 @@ public class Hmph extends MiniGame {
 		background.draw(window);
 		for (Cloud c : clouds) {
 			if (c.getXPos() < -100 && Math.random() < 0.0015) { //respawns if offscreen
-				c.moveX(SnobbyRunner.WIDTH);
-				c.moveY((int) (Math.random()*150));
+				c.setX(SnobbyRunner.WIDTH);
+				c.setY((int) (Math.random()*150));
 				c.setCloud();
 			}
 			else {
@@ -89,7 +89,7 @@ public class Hmph extends MiniGame {
 				t.setStop(23); //frame 23 because at 24, will start moving again so only stops for 1 frame
 			}
 			if (t.getXPos() < -100) { //respawns if offscreen
-				t.moveX(SnobbyRunner.WIDTH);
+				t.setX(SnobbyRunner.WIDTH);
 				t.setTree();
 			}
 			else {
@@ -97,17 +97,17 @@ public class Hmph extends MiniGame {
 			}
 		}
 		//this is the range cutoff of hmph
-		//window.drawLine(snobby.getXPos() + hmphRANGE, 0, snobby.getXPos() + hmphRANGE, 600);
-		//window.drawLine(snobby.getXPos() - hmphRANGE/4, 0, snobby.getXPos() - hmphRANGE/4, 600);
+		//window.drawLine(snobby.getXPos() + HMPH_RANGE, 0, snobby.getXPos() + HMPH_RANGE, 600);
+		//window.drawLine(snobby.getXPos() - HMPH_RANGE/4, 0, snobby.getXPos() - HMPH_RANGE/4, 600);
 	}
 	
 	public SnobbyDragon getDragon() {
 		return snobby;
 	}
 	
-	//mouse interactions
+	//mouse interactions //TODO: can charge up when mouse held down
 	public void charge() { //charges up snobby bar when mouse pressed
-		if (snobMeter.getChargeUp() == -1 && snobMeter.getHmph() == -1) {
+		if (snobMeter.getIdle() && snobby.getHmph() == -1) { //bar is idle and snobby dragon isn't hmphing
 			snobMeter.setChargeUp(0);
 			snobMeter.setIdle(false);
 		}
@@ -115,7 +115,6 @@ public class Hmph extends MiniGame {
 	
 	public void hmph() { //hmphs when mouse released
 		if (!snobMeter.getIdle()) { //can only hmph if snobby power is charging/charged
-			snobMeter.setIdle(true);
 			if (snobby.getHmph() == -1 && snobMeter.getHmph() == -1) { //if not currently hmphing, hmphs!
 				snobby.setHmph(0); //snobby dragon hmphs
 				hmphTotal++; //total hmphs increments
@@ -141,6 +140,9 @@ public class Hmph extends MiniGame {
 				background.setStop(0); //background stops moving because snobby dragon stops walking
 				if (snobMeter.getFullyCharged() != -1) {
 					snobMeter.setHmph(0); //if fully charged, snobby bar hmphs
+				}
+				else {
+					snobMeter.setIdle(true); //not hmphing and not charging/fully charged so idle
 				}
 				snobMeter.setChargeUp(-1); //not charging
 				snobMeter.setFullyCharged(-1); //not fully charged

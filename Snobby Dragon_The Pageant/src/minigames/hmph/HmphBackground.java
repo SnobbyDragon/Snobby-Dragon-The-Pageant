@@ -1,5 +1,5 @@
 package minigames.hmph;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import com.madgag.gif.fmsware.GifDecoder;
 
@@ -18,7 +18,7 @@ public class HmphBackground extends Thing {
 	}
 
 	@Override
-	public void draw(Graphics window) {
+	public void draw(Graphics2D window) {
 		// TODO Auto-generated method stub
 		int n = frame%background.getFrameCount();
 		window.drawImage(background.getFrame(n), getXPos(), getYPos(), null);

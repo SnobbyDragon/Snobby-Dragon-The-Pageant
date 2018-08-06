@@ -5,10 +5,8 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JFrame;
 import javax.swing.border.LineBorder;
 
-import general.SnobbyRunner;
 
 import javax.swing.SwingConstants;
 

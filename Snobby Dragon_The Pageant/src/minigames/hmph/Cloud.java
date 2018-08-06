@@ -1,5 +1,5 @@
 package minigames.hmph;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import com.madgag.gif.fmsware.GifDecoder;
 
@@ -20,18 +20,18 @@ public class Cloud extends Thing {
 	}
 
 	@Override
-	public void draw(Graphics window) {
+	public void draw(Graphics2D window) {
 		// TODO Auto-generated method stub
 		window.drawImage(clouds.getFrame(whichCloud), getXPos(), getYPos(), null);
 		if (isSlow != -1) {
-			moveX(getXPos() - speed + 2);
+			setX(getXPos() - speed + 2);
 			isSlow++;
 			if (isSlow == SnobbyDragon.getHmphRate()*SnobbyDragon.getHmphFrame()) { //3*8 = 24, which is the hmph animation time (rate*frames)
 				isSlow = -1;
 			}
 		}
 		else {
-			moveX(getXPos() - speed);
+			setX(getXPos() - speed);
 		}
 	}
 	

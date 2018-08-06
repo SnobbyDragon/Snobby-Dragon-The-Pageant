@@ -30,7 +30,7 @@ public class Insults extends MiniGame {
 	private Ground ground;
 	private Sky sky;
 	private Cannon cannon;
-	private static final int cannonPower = 4000;
+	private static final int cannonPower = 5000;
 	private static final double cannonAngleAdjustment = 0.05;
 	private ArrayList<LetterBox> letterBoxes;
 	private static final int boxX = 18, boxY = 16; //first box will always be here
@@ -145,7 +145,7 @@ public class Insults extends MiniGame {
 	
 	public void launchBorb() { //launches borb based on angle and power
 		cannon.setIdle(1);
-		SnobbyBorb borb = new SnobbyBorb((int) (cannon.getXPos() + cannon.getBase().getFrameSize().getWidth()/2), cannon.getYPos());
+		SnobbyBorb borb = new SnobbyBorb((int) (cannon.getXPos() + cannon.getBase().getFrameSize().getWidth()/3), cannon.getYPos());
 		borbs.add(borb);
 		//TODO: below
 //		double distance = PhysicsThing.PixelToMeter((int) cannon.getBarrel().getFrameSize().getWidth()/2);

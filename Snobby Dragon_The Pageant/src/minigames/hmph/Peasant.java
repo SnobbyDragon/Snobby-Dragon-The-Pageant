@@ -1,6 +1,6 @@
 package minigames.hmph;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import com.madgag.gif.fmsware.GifDecoder;
 
@@ -26,7 +26,7 @@ public abstract class Peasant extends Thing {
 	}
 
 	@Override
-	public void draw(Graphics window) {
+	public void draw(Graphics2D window) {
 		int n = frame/RATE%normal.getFrameCount();
 		if (!isOffended) { //if not offended then fly normally
 			window.drawImage(normal.getFrame(n), getXPos(), getYPos(), null);
@@ -39,14 +39,14 @@ public abstract class Peasant extends Thing {
 			frame = 0;
 		}
 		if (isSlow != -1) { //is slowed down
-			moveX(getXPos() - SPEED + 2);
+			setX(getXPos() - SPEED + 2);
 			isSlow++;
 			if (isSlow == SnobbyDragon.getHmphRate()*SnobbyDragon.getHmphFrame()) { //3*8 = 24, which is the hmph animation time
 				isSlow = -1;
 			}
 		}
 		else { //not slowed down
-			moveX(getXPos() - SPEED);
+			setX(getXPos() - SPEED);
 		}
 	}
 	

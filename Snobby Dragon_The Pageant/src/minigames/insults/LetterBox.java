@@ -19,7 +19,7 @@ public class LetterBox extends Thing {
 		// TODO Auto-generated constructor stub
 		isIdle = 0;
 		isBounce = -1; //not bouncing
-		whichLetter = c%95;
+		whichLetter = c%95; //ascii for 'A' = 95
 		isTyped = false;
 		//System.out.println(idle.getFrameSize());
 	}

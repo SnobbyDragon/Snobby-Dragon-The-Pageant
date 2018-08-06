@@ -1,11 +1,11 @@
 package minigames;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 
 public abstract class MiniGame {
 	
 	private HelpBox help;
-	private long timeMs; //time the game has been active in milliseconds
+	private GameTimer time;
 	private boolean isPlaying, isActive, isHelp; //the player can play and interact, the game is visible and actively displaying, help screen is displaying
 	private int score;
 	
@@ -15,7 +15,7 @@ public abstract class MiniGame {
 		isActive = false;
 		isHelp = false;
 		score = 0;
-		timeMs = 0;
+		time = new GameTimer();
 	}
 	
 	public boolean getPlaying() {
@@ -43,11 +43,11 @@ public abstract class MiniGame {
 	}
 	
 	public long getTime() {
-		return timeMs;
+		return time.getTimeMs();
 	}
 	
 	public void setTime(long l) {
-		timeMs = l;
+		time.setTimeMs(l);
 	}
 	
 	public int getScore() {
@@ -62,7 +62,8 @@ public abstract class MiniGame {
 	public abstract void calculateScore();
 	
 	//makes the graphics appear on the window
-	public void draw(Graphics window) {
+	public void draw(Graphics2D window) {
+		time.draw(window);
 		drawBackground(window);
 		drawForeground(window);
 		if (isHelp) { //if help
@@ -74,8 +75,8 @@ public abstract class MiniGame {
 	}
 
 	//different layers of drawing
-	public abstract void drawForeground(Graphics window);
-	public abstract void drawBackground(Graphics window);
+	public abstract void drawForeground(Graphics2D window);
+	public abstract void drawBackground(Graphics2D window);
 	
 	public HelpBox getHelpBox() {
 		return help;

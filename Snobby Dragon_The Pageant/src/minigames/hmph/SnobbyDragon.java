@@ -1,9 +1,6 @@
 
 package minigames.hmph;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
+import java.awt.Graphics2D;
 
 import com.madgag.gif.fmsware.GifDecoder;
 
@@ -26,7 +23,7 @@ public class SnobbyDragon extends Thing {
 	}
 	
 	@Override
-	public void draw(Graphics window) {
+	public void draw(Graphics2D window) {
 		if (isHmph != -1) { //hmphs
 			int n = isHmph/HMPH_RATE%HMPH_FRAME; //temporary frame number
 			window.drawImage(hmph.getFrame(n), getXPos(), getYPos(), null);
@@ -55,7 +52,7 @@ public class SnobbyDragon extends Thing {
 				isWalking++;
 			}
 			if (isMoving) {
-				moveX(getXPos() + 5);
+				setX(getXPos() + 5);
 			}
 		}
 	}

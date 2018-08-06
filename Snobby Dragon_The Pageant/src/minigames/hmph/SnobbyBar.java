@@ -1,5 +1,5 @@
 package minigames.hmph;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import com.madgag.gif.fmsware.GifDecoder;
 
@@ -22,7 +22,7 @@ public class SnobbyBar extends Thing {
 	}
 
 	@Override
-	public void draw(Graphics window) {
+	public void draw(Graphics2D window) {
 		// TODO Auto-generated method stub
 		if (isHmph != -1) { //hmphs
 			int n = isHmph/SnobbyDragon.getHmphRate()%hmph.getFrameCount(); //TODO: make hmph slower so make it a variable
@@ -30,6 +30,7 @@ public class SnobbyBar extends Thing {
 			isHmph++;
 			if (isHmph == SnobbyDragon.getHmphRate()*hmph.getFrameCount()) {
 				isHmph = -1;
+				isIdle = true;
 			}
 		}
 		else if (isIdle) {

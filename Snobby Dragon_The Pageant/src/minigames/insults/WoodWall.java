@@ -9,10 +9,4 @@ public class WoodWall extends Wall {
 		// TODO Auto-generated constructor stub
 		this.getRectangle().setRestitution(0.5);
 	}
-	
-	@Override
-	public void draw(Graphics2D window) {
-		
-	}
-
 }

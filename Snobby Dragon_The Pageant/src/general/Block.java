@@ -1,6 +1,6 @@
 package general;
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import minigames.Thing;
 
@@ -17,7 +17,7 @@ public class Block extends Thing {
 	}
 
 	@Override
-	public void draw(Graphics window) {
+	public void draw(Graphics2D window) {
 		// TODO Auto-generated method stub
 		window.setColor(SNOBBY_GREEN);
 		window.fillRect(getXPos(), getYPos(), size, height);

@@ -1,6 +1,6 @@
 package minigames.hmph;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import com.madgag.gif.fmsware.GifDecoder;
 
@@ -21,7 +21,7 @@ public class Tree extends Thing {
 	}
 
 	@Override
-	public void draw(Graphics window) {
+	public void draw(Graphics2D window) {
 		// TODO Auto-generated method stub
 		window.drawImage(trees.getFrame(whichTree), getXPos(), getYPos(), null);
 		if (isStop != -1) {
@@ -31,7 +31,7 @@ public class Tree extends Thing {
 			}
 		}
 		else {
-			moveX(getXPos() - speed);
+			setX(getXPos() - speed);
 		}
 	}
 
