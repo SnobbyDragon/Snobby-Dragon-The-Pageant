@@ -20,6 +20,9 @@ public class Insults extends MiniGame {
 	
 	private static final String HELP = "Use the arrow keys to aim the cannon and press enter to shoot snobby borbs!"; //TODO: instructions on how to play
 	private static final String[] INSULTS = {"PEASANT", "UNCULTURED SWINE", "FOPDOODLE", "DONUT", "DONKEY", "IDIOT", "DUNCE", "CRETIN", "STALE BAGEL", "DUMMY"}; //word bank
+	private int destruction; //how much disorder the borbs caused
+	private int borbsFired; //how many borbs fired
+	private int typedChars; //how many characters were typed
 	private String currentInsult;
 	private char currentLetter;
 	private int currentSpot;
@@ -39,6 +42,10 @@ public class Insults extends MiniGame {
 	public Insults() {
 		super();
 		setHelpBox(HELP);
+		
+		destruction = 0;
+		borbsFired = 0;
+		typedChars = 0;
 		
 		borbs = new ArrayList<SnobbyBorb>();
 		walls = new ArrayList<Wall>();
@@ -66,6 +73,7 @@ public class Insults extends MiniGame {
 	public void calculateScore() {
 		// TODO Auto-generated method stub
 		int score = 0;
+		score = typedChars*borbsFired + destruction;
 		setScore(score);
 	}
 
