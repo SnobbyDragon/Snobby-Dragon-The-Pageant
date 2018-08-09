@@ -29,7 +29,8 @@ public class Insults extends MiniGame {
 	private boolean canShoot;
 	
 	private ArrayList<SnobbyBorb> borbs;
-	private ArrayList<Wall> walls; //change to buildings later
+	private ArrayList<Wall> walls;
+	private int buildingType;
 	private Ground ground;
 	private Sky sky;
 	private Cannon cannon;
@@ -92,20 +93,51 @@ public class Insults extends MiniGame {
 			box.draw(window);
 		}
 		if (getPlaying()) {
+			checkBuilding();
 			world.update(UPDATE_TIME);
 		}
 	}
-	
+
 	@Override
 	public void drawBackground(Graphics2D window) {
 		// TODO Auto-generated method stub
 		sky.draw(window);
 	}
-	
-	public void makeBuilding() {
-		walls.add(new StoneWall(400, 200));
+
+	public void makeBuilding() { //spawns new building
+		walls.clear();
+		buildingType = (int)(Math.random()*3);
+		buildingType = 0;
+		switch (buildingType) {
+		case 0: //simple
+			int distance = (int)(Math.random()*50);
+			walls.add(new StoneWall(425 + distance, 200));
+			walls.add(new StoneWall(575 + distance, 200));
+			walls.add(new WoodWall(500 + distance, 50));
+			walls.get(2).body.rotateAboutCenter(Math.PI/-2);
+			break;
+		case 1: //normal
+			break;
+		case 2: //complex
+			break;
+		}
 	}
 	
+	public void checkBuilding() { //is the building destroyed?
+		switch (buildingType) {
+		case 0: //simple
+			if (walls.get(2).body.isInContact(ground.body)) { //roof on ground
+				destruction += 25;
+				makeBuilding(); //reset
+			}
+			break;
+		case 1: //normal
+			break;
+		case 2: //complex
+			break;
+		}
+	}
+
 	public void randomInsult() {
 		currentSpot = 0;
 		currentInsult = INSULTS[(int) (Math.random()*INSULTS.length)];

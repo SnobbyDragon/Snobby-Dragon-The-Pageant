@@ -8,6 +8,7 @@ import minigames.MiniGame;
 public class Glare extends MiniGame {
 	
 	private static final String HELP = "";
+	private static final Color DARK = new Color(0f, 0f, 0f, 0.75f);
 	private int hits, misses;
 	private Monocle monocle;
 	
@@ -38,7 +39,7 @@ public class Glare extends MiniGame {
 	@Override
 	public void drawBackground(Graphics2D window) {
 		// TODO Auto-generated method stub
-		window.setColor(Color.BLACK);
+		window.setColor(DARK);
 		window.fillRect(0, 0, SnobbyRunner.WIDTH, SnobbyRunner.HEIGHT);
 	}
 	

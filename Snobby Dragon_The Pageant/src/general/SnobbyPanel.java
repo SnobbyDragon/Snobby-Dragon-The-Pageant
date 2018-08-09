@@ -116,7 +116,7 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 			if (game2.getPlaying()) {
 				//System.out.println("game 2 playing");
 				game2.setTime(game2.getTime() + TIME_PER_FRAME);
-				if (game2.getTime() >= 1) {//MINIGAME_TIME) { //TODO: DELETE COMMENT LATER WHEN DONE
+				if (game2.getTime() >= MINIGAME_TIME) { //TODO: DELETE COMMENT LATER WHEN DONE
 					game2.setPlaying(false);
 				}
 			}

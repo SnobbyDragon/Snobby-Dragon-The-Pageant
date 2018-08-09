@@ -13,7 +13,7 @@ public class Monocle extends Thing {
 	private int isGlaring; //counting glare frames
 	private static final int GLARE_RATE = 1, GLARE_FRAME = scope.getFrameCount();
 	private static final int RADIUS = scope.getFrameSize().height/2;
-	private static final Color LIGHT = new Color(1f, 1f, 1f, 0.25f);
+	private static final Color LIGHT = new Color(1f, 1f, 1f, 0.75f);
 	private static final int CROSSHAIR = 6; //crosshair error diff radii
 
 	public Monocle(int x, int y) {
