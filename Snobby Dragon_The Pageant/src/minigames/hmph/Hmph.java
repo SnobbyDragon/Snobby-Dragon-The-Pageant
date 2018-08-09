@@ -37,7 +37,7 @@ public class Hmph extends MiniGame {
 			treeSpacing += SnobbyRunner.WIDTH/TREE_MAX; //width of screen divided by number of trees
 		}
 		peasants.add(new FlyingPeasant(-420, 100));
-		peasants.add(new HoverboardPeasant(-420, 200));
+		peasants.add(new HoverboardPeasant(-420, 196));
 		peasants.add(new WalkingPeasant(-420, 150));
 		peasants.add(new PeasantPeasant(-420, 200));
 	}
