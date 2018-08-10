@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import org.dyn4j.collision.AxisAlignedBounds;
+import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.geometry.Vector2;
 
@@ -34,7 +35,7 @@ public class Insults extends MiniGame {
 	private Ground ground;
 	private Sky sky;
 	private Cannon cannon;
-	private static final int cannonPower = 5000;
+	private static final int cannonPower = 7500;
 	private static final double cannonAngleAdjustment = 0.05;
 	private ArrayList<LetterBox> letterBoxes;
 	private static final int boxX = 18, boxY = 16; //first box will always be here
@@ -105,7 +106,6 @@ public class Insults extends MiniGame {
 	}
 
 	public void makeBuilding() { //spawns new building
-		walls.clear();
 		buildingType = (int)(Math.random()*3);
 		buildingType = 0;
 		switch (buildingType) {
@@ -127,8 +127,13 @@ public class Insults extends MiniGame {
 		switch (buildingType) {
 		case 0: //simple
 			if (walls.get(2).body.isInContact(ground.body)) { //roof on ground
-				destruction += 25;
-				makeBuilding(); //reset
+				destruction += 25; //gain destruction points
+				walls.clear(); //reset
+				//System.out.println(world.getBodyCount());
+				//world.getBodies().removeIf((Body b) -> !b.getUserData().equals(null)); //TODO: remove bodies correctly
+				//System.out.println(world.getBodyCount());
+				makeBuilding();
+				//System.out.println(world.getBodyCount());
 			}
 			break;
 		case 1: //normal

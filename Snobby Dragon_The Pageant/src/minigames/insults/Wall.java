@@ -16,6 +16,7 @@ public class Wall extends PhysicsThing {
 	private BodyFixture rectangle;
 	private double radius; //diagonal from center to farthest point
 	private static final int WIDTH = textures.getFrameSize().width, HEIGHT = textures.getFrameSize().height;
+	private static final String TYPE = "WALL";
 
 	public Wall(int x, int y) {
 		super(x, y);
@@ -23,6 +24,7 @@ public class Wall extends PhysicsThing {
 		rectangle = new BodyFixture(Geometry.createRectangle(PixelToMeter(WIDTH), PixelToMeter(HEIGHT)));
 		radius = rectangle.getShape().getRadius();
 		body.addFixture(rectangle);
+		body.setUserData(TYPE);
 	}
 	
 	public BodyFixture getRectangle() {

@@ -10,7 +10,7 @@ public class StoneWall extends Wall {
 		this.getRectangle().setRestitution(0.05);
 		this.getRectangle().setDensity(1500);
 		this.getRectangle().setFriction(0.6);
-		this.setTexture((int)(Math.random()*4 + 3));
+		this.setTexture((int)(Math.random()*2 + 3));
 		body.setMass(MassType.NORMAL);
 	}
 
