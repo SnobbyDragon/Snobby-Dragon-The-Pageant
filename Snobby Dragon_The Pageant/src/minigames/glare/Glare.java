@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import general.SnobbyRunner;
 import minigames.MiniGame;
+import minigames.hmph.PeasantPeasant;
 
 public class Glare extends MiniGame {
 	
@@ -11,6 +12,7 @@ public class Glare extends MiniGame {
 	private static final Color DARK = new Color(0f, 0f, 0f, 0.75f);
 	private int hits, misses;
 	private Monocle monocle;
+	private PeasantPeasant p;
 	
 	public Glare() {
 		super();
@@ -18,7 +20,8 @@ public class Glare extends MiniGame {
 		
 		hits = 0;
 		misses = 0;
-		monocle = new Monocle(0, 0);
+		monocle = new Monocle(100, 100);
+		p = new PeasantPeasant(1500, 300);
 	}
 
 	@Override
@@ -33,14 +36,15 @@ public class Glare extends MiniGame {
 	@Override
 	public void drawForeground(Graphics2D window) {
 		// TODO Auto-generated method stub
+		p.draw(window);
+		window.setColor(DARK);
+		window.fillRect(0, 0, SnobbyRunner.WIDTH, SnobbyRunner.HEIGHT);
 		monocle.draw(window);
 	}
 	
 	@Override
 	public void drawBackground(Graphics2D window) {
 		// TODO Auto-generated method stub
-		window.setColor(DARK);
-		window.fillRect(0, 0, SnobbyRunner.WIDTH, SnobbyRunner.HEIGHT);
 	}
 	
 	public void glare() { //glares at the current position
