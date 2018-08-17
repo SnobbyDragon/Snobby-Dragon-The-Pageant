@@ -15,6 +15,7 @@ public class SnobbyRunner extends JFrame{
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 600;
 	//private ImageIcon icon = new ImageIcon("Icon.png"); //TODO: Make a custom icon and figure out how to implement it
+	//TODO MAKE SOUND http://www.ntu.edu.sg/home/ehchua/programming/java/J8c_PlayingSound.html
 	
 	private static int scene;
 	/* Scenes:

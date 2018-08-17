@@ -1,6 +1,7 @@
 package minigames.insults;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 import org.dyn4j.collision.AxisAlignedBounds;
 import org.dyn4j.dynamics.Body;
@@ -107,7 +108,7 @@ public class Insults extends MiniGame {
 
 	public void makeBuilding() { //spawns new building
 		buildingType = (int)(Math.random()*3);
-		buildingType = 0;
+		buildingType = 0; //TODO delete later
 		switch (buildingType) {
 		case 0: //simple
 			int distance = (int)(Math.random()*50);
@@ -130,7 +131,8 @@ public class Insults extends MiniGame {
 				destruction += 25; //gain destruction points
 				walls.clear(); //reset
 				//System.out.println(world.getBodyCount());
-				//world.getBodies().removeIf((Body b) -> !b.getUserData().equals(null)); //TODO: remove bodies correctly
+				Predicate<Body> bodyPredicate = b -> !b.getUserData().equals(null);
+				world.getBodies().removeIf(bodyPredicate); //TODO: remove bodies correctly
 				//System.out.println(world.getBodyCount());
 				makeBuilding();
 				//System.out.println(world.getBodyCount());
