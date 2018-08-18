@@ -1,7 +1,6 @@
 package minigames.insults;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 import org.dyn4j.collision.AxisAlignedBounds;
 import org.dyn4j.dynamics.Body;
@@ -52,7 +51,6 @@ public class Insults extends MiniGame {
 		
 		borbs = new ArrayList<SnobbyBorb>();
 		walls = new ArrayList<Wall>();
-		makeBuilding();
 		ground = new Ground(SnobbyRunner.WIDTH/2, SnobbyRunner.HEIGHT - Ground.HEIGHT/2);
 		sky = new Sky(0, 0);
 		
@@ -62,14 +60,12 @@ public class Insults extends MiniGame {
 		for (SnobbyBorb borb : borbs) {
 			world.addBody(borb.body);
 		}
-		for (Wall wall : walls) {
-			world.addBody(wall.body);
-		}
 		world.addBody(ground.body);
 		
 		cannon = new Cannon(100, 450);
 		letterBoxes = new ArrayList<LetterBox>(); //screen can fit 11 letter boxes per row. vertical margin of 16, horizontal margin of 16 (16 + 64 = 80) or 18 at the two ends
 		randomInsult(); //prepares insult
+		makeBuilding(); //creates first building
 	}
 
 	@Override
@@ -116,11 +112,15 @@ public class Insults extends MiniGame {
 			walls.add(new StoneWall(575 + distance, 200));
 			walls.add(new WoodWall(500 + distance, 50));
 			walls.get(2).body.rotateAboutCenter(Math.PI/-2);
+			
 			break;
 		case 1: //normal
 			break;
 		case 2: //complex
 			break;
+		}
+		for (Wall wall : walls) {
+			world.addBody(wall.body);
 		}
 	}
 	
@@ -130,12 +130,13 @@ public class Insults extends MiniGame {
 			if (walls.get(2).body.isInContact(ground.body)) { //roof on ground
 				destruction += 25; //gain destruction points
 				walls.clear(); //reset
-				//System.out.println(world.getBodyCount());
-				Predicate<Body> bodyPredicate = b -> !b.getUserData().equals(null);
-				world.getBodies().removeIf(bodyPredicate); //TODO: remove bodies correctly
-				//System.out.println(world.getBodyCount());
+				ArrayList<Body> bodies = new ArrayList<Body>(world.getBodies());
+				for (int i = bodies.size() - 1; i > 0; i--) {
+					if (bodies.get(i).getUserData() != null) {
+						world.removeBody(i);
+					}
+				}
 				makeBuilding();
-				//System.out.println(world.getBodyCount());
 			}
 			break;
 		case 1: //normal
