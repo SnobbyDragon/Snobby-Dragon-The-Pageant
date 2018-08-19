@@ -125,24 +125,29 @@ public class Insults extends MiniGame {
 	}
 	
 	public void checkBuilding() { //is the building destroyed?
+		boolean destroyed = false;
 		switch (buildingType) {
 		case 0: //simple
 			if (walls.get(2).body.isInContact(ground.body)) { //roof on ground
 				destruction += 25; //gain destruction points
 				walls.clear(); //reset
-				ArrayList<Body> bodies = new ArrayList<Body>(world.getBodies());
-				for (int i = bodies.size() - 1; i > 0; i--) {
-					if (bodies.get(i).getUserData() != null) {
-						world.removeBody(i);
-					}
-				}
-				makeBuilding();
+				destroyed = true;
 			}
 			break;
 		case 1: //normal
+			
 			break;
 		case 2: //complex
 			break;
+		}
+		if (destroyed) {
+			ArrayList<Body> bodies = new ArrayList<Body>(world.getBodies());
+			for (int i = bodies.size() - 1; i > 0; i--) {
+				if (bodies.get(i).getUserData() != null) {
+					world.removeBody(i);
+				}
+			}
+			makeBuilding();
 		}
 	}
 

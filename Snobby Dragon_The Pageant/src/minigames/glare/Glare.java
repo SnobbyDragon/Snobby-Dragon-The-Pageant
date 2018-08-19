@@ -1,10 +1,10 @@
 package minigames.glare;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import general.SnobbyRunner;
 import minigames.MiniGame;
-import minigames.hmph.PeasantPeasant;
 
 public class Glare extends MiniGame {
 	
@@ -12,7 +12,7 @@ public class Glare extends MiniGame {
 	private static final Color DARK = new Color(0f, 0f, 0f, 0.75f);
 	private int hits, misses;
 	private Monocle monocle;
-	private PeasantPeasant p;
+	private ArrayList<Table> tables;
 	
 	public Glare() {
 		super();
@@ -21,7 +21,16 @@ public class Glare extends MiniGame {
 		hits = 0;
 		misses = 0;
 		monocle = new Monocle(100, 100);
-		p = new PeasantPeasant(1500, 300);
+		tables = new ArrayList<Table>();
+		tables.add(new Table(150, 120));
+		tables.add(new Table(400, 120));
+		tables.add(new Table(650, 120));
+		tables.add(new Table(150, 280));
+		tables.add(new Table(400, 280));
+		tables.add(new Table(650, 280));
+		tables.add(new Table(150, 440));
+		tables.add(new Table(400, 440));
+		tables.add(new Table(650, 440));
 	}
 
 	@Override
@@ -36,7 +45,6 @@ public class Glare extends MiniGame {
 	@Override
 	public void drawForeground(Graphics2D window) {
 		// TODO Auto-generated method stub
-		p.draw(window);
 		window.setColor(DARK);
 		window.fillRect(0, 0, SnobbyRunner.WIDTH, SnobbyRunner.HEIGHT);
 		monocle.draw(window);
@@ -45,6 +53,9 @@ public class Glare extends MiniGame {
 	@Override
 	public void drawBackground(Graphics2D window) {
 		// TODO Auto-generated method stub
+		for (Table t : tables) {
+			t.draw(window);
+		}
 	}
 	
 	public void glare() { //glares at the current position
