@@ -11,6 +11,7 @@ public class Glare extends MiniGame {
 	private static final String HELP = "";
 	private static final Color DARK = new Color(0f, 0f, 0f, 0.75f);
 	private int hits, misses;
+	
 	private Monocle monocle;
 	private ArrayList<Table> tables;
 	
@@ -60,10 +61,27 @@ public class Glare extends MiniGame {
 	
 	public void glare() { //glares at the current position
 		monocle.shoot();
+		//check hitbox and see if it hit or missed and increment appropriately
 	}
 	
 	public Monocle getMonocle() {
 		return monocle;
+	}
+	
+	public int getHits() {
+		return hits;
+	}
+
+	public void setHits(int hits) {
+		this.hits = hits;
+	}
+
+	public int getMisses() {
+		return misses;
+	}
+
+	public void setMisses(int misses) {
+		this.misses = misses;
 	}
 
 }

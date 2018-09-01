@@ -231,6 +231,7 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 				requestFocus(); //gets focus from help so can use keyboard
 			}
 			game3.glare();
+			
 		}
 	}
 

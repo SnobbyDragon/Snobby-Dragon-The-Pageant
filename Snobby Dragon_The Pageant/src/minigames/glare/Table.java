@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import minigames.Thing;
 
-public class Table extends Thing {
+public class Table extends Thing implements Hittable {
 	
 	private static final int WIDTH = 100, HEIGHT = 40;
 
