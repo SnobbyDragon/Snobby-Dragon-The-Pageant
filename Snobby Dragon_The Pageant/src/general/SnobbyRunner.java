@@ -24,7 +24,7 @@ public class SnobbyRunner extends JFrame{
 	 * 1 = minigames (SnobbyPanel)
 	 * 2 = final score screen (ScorePanel)
 	 */
-	//TODO: MAKE A GLASS ROOT PANE TO CATCH ACTIONS AND PAINT TRANSITIONS
+	//TODO: MAKE A GLASS ROOT PANE TO CATCH ACTIONS AND PAINT TRANSITIONS???
 	
 	private static JLayeredPane layers;
 	private static HomePanel home;
