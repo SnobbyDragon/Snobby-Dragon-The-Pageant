@@ -4,11 +4,9 @@ import java.awt.Graphics2D;
 
 import minigames.Thing;
 
-public class Table extends Thing {
-	
-	private static final int WIDTH = 100, HEIGHT = 40;
+public class Snob extends Thing implements Hittable {
 
-	public Table(int x, int y) {
+	public Snob(int x, int y) {
 		super(x, y);
 		// TODO Auto-generated constructor stub
 	}
@@ -16,7 +14,7 @@ public class Table extends Thing {
 	@Override
 	public void draw(Graphics2D window) {
 		// TODO Auto-generated method stub
-		window.drawRect(getXPos(), getYPos(), WIDTH, HEIGHT);
+		
 	}
 
 }

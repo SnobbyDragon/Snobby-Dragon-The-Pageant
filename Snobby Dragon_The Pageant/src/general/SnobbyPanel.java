@@ -15,6 +15,7 @@ import minigames.insults.Insults;
 
 /*
  * This panel contains all things mini games and transitions between them (scoring animations)
+ * basically... where the magic happens :)
  */
 
 //TODO: maybe rework this whole thing with Swing Timers and also put minigames on different panels??
