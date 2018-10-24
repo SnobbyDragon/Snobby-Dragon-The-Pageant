@@ -14,6 +14,7 @@ public class Glare extends MiniGame {
 	
 	private Monocle monocle;
 	private ArrayList<Table> tables;
+	private ArrayList<PeasantCutout> cutouts;
 	
 	public Glare() {
 		super();
@@ -32,6 +33,16 @@ public class Glare extends MiniGame {
 		tables.add(new Table(150, 440));
 		tables.add(new Table(400, 440));
 		tables.add(new Table(650, 440));
+		cutouts = new ArrayList<PeasantCutout>();
+		cutouts.add(new PeasantCutout(150, 120));
+		cutouts.add(new PeasantCutout(400, 120));
+		cutouts.add(new PeasantCutout(650, 120));
+		cutouts.add(new PeasantCutout(150, 280));
+		cutouts.add(new PeasantCutout(400, 280));
+		cutouts.add(new PeasantCutout(650, 280));
+		cutouts.add(new PeasantCutout(150, 440));
+		cutouts.add(new PeasantCutout(400, 440));
+		cutouts.add(new PeasantCutout(650, 440));
 	}
 
 	@Override
@@ -54,6 +65,9 @@ public class Glare extends MiniGame {
 	@Override
 	public void drawBackground(Graphics2D window) {
 		// TODO Auto-generated method stub
+		for (PeasantCutout cutout : cutouts) {
+			cutout.draw(window);
+		}
 		for (Table t : tables) {
 			t.draw(window);
 		}

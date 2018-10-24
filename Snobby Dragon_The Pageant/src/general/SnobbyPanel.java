@@ -96,7 +96,7 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 			if (game1.getPlaying()) {
 				game1.setTime(game1.getTime() + TIME_PER_FRAME);
 				//System.out.println("Time:" + game1.getTime());
-				if (game1.getTime() >= MINIGAME_TIME) { //1 minute per minigame TODO: DELETE COMMENT LATER WHEN DONE
+				if (game1.getTime() >= 1) { //MINIGAME_TIME) { //1 minute per minigame
 					game1.getDragon().setMoving(true); //snobby walks out of screen when time is over
 					if (game1.getDragon().getXPos() >= SnobbyRunner.WIDTH) { //when snobby is off screen, transition scenes and stop player interactions
 						game1.setPlaying(false);
@@ -117,7 +117,7 @@ public class SnobbyPanel extends JPanel implements Runnable, MouseListener, Mous
 			if (game2.getPlaying()) {
 				//System.out.println("game 2 playing");
 				game2.setTime(game2.getTime() + TIME_PER_FRAME);
-				if (game2.getTime() >= MINIGAME_TIME) { //TODO: DELETE COMMENT LATER WHEN DONE
+				if (game2.getTime() >= 1) { //MINIGAME_TIME) {
 					game2.setPlaying(false);
 				}
 			}

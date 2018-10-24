@@ -1,6 +1,6 @@
 package minigames.glare;
 
-public interface Hittable {
+public interface Glareable {
 	
 	
 }

@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import minigames.Thing;
 
-public class Snob extends Thing implements Hittable {
+public class Snob extends Thing implements Glareable {
 
 	public Snob(int x, int y) {
 		super(x, y);
