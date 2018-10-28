@@ -76,6 +76,11 @@ public class Glare extends MiniGame {
 	public void glare() { //glares at the current position
 		monocle.shoot();
 		//check hitbox and see if it hit or missed and increment appropriately
+		for (PeasantCutout cutout: cutouts) {
+			if (cutout.getHitBox().contains(monocle.getPoint())) { //hit so SHOOKETH!!
+				cutout.becomeShooketh();
+			}
+		}
 	}
 	
 	public Monocle getMonocle() {
