@@ -9,7 +9,7 @@ import minigames.MiniGame;
 public class Glare extends MiniGame {
 	
 	private static final String HELP = "";
-	private static final Color DARK = new Color(0f, 0f, 0f, 0.75f);
+	private static final Color DARK = new Color(0f, 0f, 0f, 0.5f);
 	private int hits, misses;
 	
 	private Monocle monocle;
@@ -35,14 +35,14 @@ public class Glare extends MiniGame {
 		tables.add(new Table(650, 440));
 		cutouts = new ArrayList<PeasantCutout>();
 		cutouts.add(new PeasantCutout(150, 120));
-		cutouts.add(new PeasantCutout(400, 120));
-		cutouts.add(new PeasantCutout(650, 120));
-		cutouts.add(new PeasantCutout(150, 280));
-		cutouts.add(new PeasantCutout(400, 280));
-		cutouts.add(new PeasantCutout(650, 280));
-		cutouts.add(new PeasantCutout(150, 440));
-		cutouts.add(new PeasantCutout(400, 440));
-		cutouts.add(new PeasantCutout(650, 440));
+//		cutouts.add(new PeasantCutout(400, 120));
+//		cutouts.add(new PeasantCutout(650, 120));
+//		cutouts.add(new PeasantCutout(150, 280));
+//		cutouts.add(new PeasantCutout(400, 280));
+//		cutouts.add(new PeasantCutout(650, 280));
+//		cutouts.add(new PeasantCutout(150, 440));
+//		cutouts.add(new PeasantCutout(400, 440));
+//		cutouts.add(new PeasantCutout(650, 440));
 	}
 
 	@Override
@@ -72,13 +72,15 @@ public class Glare extends MiniGame {
 			t.draw(window);
 		}
 	}
-	
+
 	public void glare() { //glares at the current position
-		monocle.shoot();
-		//check hitbox and see if it hit or missed and increment appropriately
-		for (PeasantCutout cutout: cutouts) {
-			if (cutout.getHitBox().contains(monocle.getPoint())) { //hit so SHOOKETH!!
-				cutout.becomeShooketh();
+		if (monocle.canShoot()) {
+			monocle.shoot();
+			//check hitbox and see if it hit or missed and increment appropriately
+			for (PeasantCutout cutout: cutouts) {
+				if (cutout.getHitBox().contains(monocle.getPoint())) { //hit so SHOOKETH!!
+					cutout.becomeShooketh();
+				}
 			}
 		}
 	}

@@ -37,6 +37,10 @@ public class Monocle extends Thing {
 		}
 	}
 	
+	public boolean canShoot() { //can shoot??
+		return isGlaring==0;
+	}
+	
 	public void shoot() { //positively GLARES at the target
 		isGlaring = 1;
 	}
