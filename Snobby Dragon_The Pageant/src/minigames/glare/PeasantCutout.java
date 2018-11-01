@@ -17,11 +17,15 @@ public class PeasantCutout extends Thing {
 	private int frame, rate, timeout; //counts the animation frames, rate at which the animation plays
 	private boolean isShook, isGettingUp, isDown; //peasant glared at??, rising from the ashes of shookness, is down
 	private Rectangle hitBox;
+	private int tablePositionX, tablePositionY;
 	
 	public PeasantCutout(int x, int y) {
 		super(x, y);
 		// TODO Auto-generated constructor stub
+		tablePositionX = x;
+		tablePositionY = y;
 		randomPeasant(); //random peasant in the beginning
+		timeout = (int)(Math.random()*300); //some start up
 	}
 
 	@Override
@@ -52,9 +56,9 @@ public class PeasantCutout extends Thing {
 		}
 		int n = frame/rate%cutout.getFrameCount(); //frame counter
 //		System.out.println(animation);
-		System.out.println("FRAME=" + frame + " " + n);
-		System.out.println("down=" + isDown + "\tshook=" + isShook + "\tisGettingUp=" + isGettingUp);
-		System.out.println("time=" + timeout);
+//		System.out.println("FRAME=" + frame + " " + n);
+//		System.out.println("down=" + isDown + "\tshook=" + isShook + "\tisGettingUp=" + isGettingUp);
+//		System.out.println("time=" + timeout);g
 		window.drawImage(cutout.getFrame(n), getXPos(), getYPos(), null);
 	}
 
@@ -70,8 +74,16 @@ public class PeasantCutout extends Thing {
 		rate = RATES[random]; //gets the corresponding animation rate
 		rate = 2; //disregard different fps for animations rn
 		frame = rate*cutout.getFrameCount() - 1; //ready for get up reverse animation
-		hitBox = new Rectangle(getXPos(), getYPos(), cutout.getFrameSize().width, cutout.getFrameSize().height); //hitbox
 		System.out.println(rate*cutout.getFrameCount());
+		
+		//adjusts position
+		//this.setX(tablePositionX + (tablePositionX - cutout.getFrameSize().width)/2); //TODO: fix this because it's wrong lmao
+		if (random == 0) { //fly peasant TEMPORARY adjustment
+			this.setX(tablePositionX - 25);
+		}
+		this.setY(tablePositionY - cutout.getFrameSize().height);
+		
+		hitBox = new Rectangle(getXPos(), getYPos(), cutout.getFrameSize().width, cutout.getFrameSize().height); //hitbox
 	}
 	
 	public void shouldGetUp() { //determines if the peasant should get up now

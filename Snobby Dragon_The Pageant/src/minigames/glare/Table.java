@@ -2,11 +2,13 @@ package minigames.glare;
 
 import java.awt.Graphics2D;
 
+import com.madgag.gif.fmsware.GifDecoder;
+
 import minigames.Thing;
 
 public class Table extends Thing {
 	
-	private static final int WIDTH = 100, HEIGHT = 40;
+	private static GifDecoder table = new GifDecoder("Table.gif"); //TODO: MAKE TABLE ANIMATION
 
 	public Table(int x, int y) {
 		super(x, y);
@@ -16,7 +18,8 @@ public class Table extends Thing {
 	@Override
 	public void draw(Graphics2D window) {
 		// TODO Auto-generated method stub
-		window.drawRect(getXPos(), getYPos(), WIDTH, HEIGHT);
+		int n = 0; //no animation right now
+		window.drawImage(table.getFrame(n), getXPos(), getYPos(), null);
 	}
 
 }

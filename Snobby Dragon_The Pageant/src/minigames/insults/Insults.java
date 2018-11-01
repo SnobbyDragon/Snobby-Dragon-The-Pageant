@@ -20,7 +20,7 @@ public class Insults extends MiniGame {
 	private static final double UPDATE_TIME = (double)SnobbyPanel.TIME_PER_FRAME/1000;
 	
 	private static final String HELP = "Use the arrow keys to aim the cannon and press enter to shoot snobby borbs!"; //TODO: instructions on how to play
-	private static final String[] INSULTS = {"PEASANT", "UNCULTURED SWINE", "FOPDOODLE", "DONUT", "DONKEY", "IDIOT", "DUNCE", "CRETIN", "STALE BAGEL", "DUMMY"}; //word bank
+	private static final String[] INSULTS = {"PEASANT", "UNCULTURED SWINE", "FOPDOODLE", "DONUT", "DONKEY", "IDIOT", "DUNCE", "CRETIN", "STALE BAGEL", "DUMMY", "DINGUS"}; //word bank
 	private int destruction; //how much disorder the borbs caused
 	private int borbsFired; //how many borbs fired
 	private int typedChars; //how many characters were typed

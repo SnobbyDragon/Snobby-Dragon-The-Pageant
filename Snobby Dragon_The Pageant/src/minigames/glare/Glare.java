@@ -8,7 +8,7 @@ import minigames.MiniGame;
 
 public class Glare extends MiniGame {
 	
-	private static final String HELP = "";
+	private static final String HELP = "Click on the peasants to glare at them! The more peasants you glare at, the more points you get!";
 	private static final Color DARK = new Color(0f, 0f, 0f, 0.5f);
 	private int hits, misses;
 	
@@ -35,14 +35,14 @@ public class Glare extends MiniGame {
 		tables.add(new Table(650, 440));
 		cutouts = new ArrayList<PeasantCutout>();
 		cutouts.add(new PeasantCutout(150, 120));
-//		cutouts.add(new PeasantCutout(400, 120));
-//		cutouts.add(new PeasantCutout(650, 120));
-//		cutouts.add(new PeasantCutout(150, 280));
-//		cutouts.add(new PeasantCutout(400, 280));
-//		cutouts.add(new PeasantCutout(650, 280));
-//		cutouts.add(new PeasantCutout(150, 440));
-//		cutouts.add(new PeasantCutout(400, 440));
-//		cutouts.add(new PeasantCutout(650, 440));
+		cutouts.add(new PeasantCutout(400, 120));
+		cutouts.add(new PeasantCutout(650, 120));
+		cutouts.add(new PeasantCutout(150, 280));
+		cutouts.add(new PeasantCutout(400, 280));
+		cutouts.add(new PeasantCutout(650, 280));
+		cutouts.add(new PeasantCutout(150, 440));
+		cutouts.add(new PeasantCutout(400, 440));
+		cutouts.add(new PeasantCutout(650, 440));
 	}
 
 	@Override
@@ -77,10 +77,18 @@ public class Glare extends MiniGame {
 		if (monocle.canShoot()) {
 			monocle.shoot();
 			//check hitbox and see if it hit or missed and increment appropriately
+			boolean didHit = false;
 			for (PeasantCutout cutout: cutouts) {
 				if (cutout.getHitBox().contains(monocle.getPoint())) { //hit so SHOOKETH!!
 					cutout.becomeShooketh();
+					didHit = true;
 				}
+			}
+			if (didHit) {
+				hits++;
+			}
+			else {
+				misses++;
 			}
 		}
 	}
